@@ -1,0 +1,44 @@
+---
+description: Planned rewrite to C# WPF + WTelegramClient/TDLib
+alwaysApply: true
+---
+
+# Telegram 下载器：C# 迁移计划（已确认）
+
+## 目标
+
+用 **C# UI + WTelegramClient（或 TDLib）** 重做，解决 CustomTkinter 高并发下界面卡顿；**在新建文件夹**开发，不直接覆盖现有 Python 版。
+
+## 建议目录
+
+- 现有 Python 版：`Telegram批量下载器/`（可维护至功能对齐）
+- 新 C# 版：同级新建，例如 `TelegramDownloader.CSharp/` 或 `telegramDownload/`
+
+## 技术选型
+
+- UI：WPF（或 WinUI）原生 Windows 界面
+- 协议：优先 **WTelegramClient**（C# 侧类似 Telethon）；必要时再上官方 **TDLib**
+- 不强制保留 Python 下载内核
+
+## 需迁移的核心能力
+
+- 链接批量解析（`t.me` / `t.me/c`）、任务列表与进度
+- 登录（扫码/手机号）、代理、会话本地保存
+- 视频/图片、仅视频/仅图片/全部
+- 按文案建文件夹；文件夹内 `图片/`、`视频/`；重名追加消息 ID
+- 断点续传、失败重试、并发 1–5（进度/日志节流，避免刷爆 UI）
+- 下载记录日志（时间命名、链接/文案/数量类型/路径）
+- 命名模板、剪贴板填入、历史配置项
+
+## 实施顺序
+
+1. 安装 .NET SDK，脚手架 WPF + WTelegramClient
+2. 登录 + 单链接下载打通
+3. 批量任务、文件夹规则、媒体筛选
+4. 设置页与下载日志
+5. 发布单文件 exe，与 Python 版功能对齐后再考虑停更旧版
+
+## 注意
+
+- 用户已确认走此路线；后续相关改动默认按本计划推进
+- GitHub 独立仓库名：`telegramDownload`

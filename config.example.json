@@ -1,0 +1,17 @@
+{
+  "api_id": 2040,
+  "api_hash": "b18441a1ff607e10a989891a5462e627",
+  "download_dir": "downloads",
+  "naming_template": "{index}_{title}_{tags}",
+  "naming_mode": "auto",
+  "session_name": "tg_downloader",
+  "max_retries": 3,
+  "concurrency": 3,
+  "prefer_qr_login": true,
+  "proxy": "",
+  "clipboard_auto_fill": true,
+  "folder_by_caption": true,
+  "media_types": "both",
+  "history_log_enabled": true,
+  "history_log_dir": ""
+}
